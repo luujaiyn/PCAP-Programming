@@ -10,34 +10,34 @@
 
 /* Ethernet header */
 struct ethheader {
-    u_char  ether_dhost[6];    /* destination host address */
-    u_char  ether_shost[6];    /* source host address */
-    u_short ether_type;        /* IP? ARP? RARP? etc */
+    u_char  ether_dhost[6]; 
+    u_char  ether_shost[6];    
+    u_short ether_type;      
 };
 
 /* IP Header */
 struct ipheader {
-  unsigned char      iph_ihl:4, //IP header length
-                     iph_ver:4; //IP version
-  unsigned char      iph_tos; //Type of service
-  unsigned short int iph_len; //IP Packet length (data + header)
-  unsigned short int iph_ident; //Identification
-  unsigned short int iph_flag:3, //Fragmentation flags
-                     iph_offset:13; //Flags offset
-  unsigned char      iph_ttl; //Time to Live
-  unsigned char      iph_protocol; //Protocol type
-  unsigned short int iph_chksum; //IP datagram checksum
-  struct  in_addr    iph_sourceip; //Source IP address
-  struct  in_addr    iph_destip;   //Destination IP address
+  unsigned char      iph_ihl:4, 
+                     iph_ver:4; 
+  unsigned char      iph_tos; 
+  unsigned short int iph_len; 
+  unsigned short int iph_ident;
+  unsigned short int iph_flag:3, 
+                     iph_offset:13;
+  unsigned char      iph_ttl; 
+  unsigned char      iph_protocol;
+  unsigned short int iph_chksum; 
+  struct  in_addr    iph_sourceip;
+  struct  in_addr    iph_destip; 
 };
 
 /* TCP Header */
 struct tcpheader {
-    u_short tcp_sport;               /* source port */
-    u_short tcp_dport;               /* destination port */
-    u_int   tcp_seq;                 /* sequence number */
-    u_int   tcp_ack;                 /* acknowledgement number */
-    u_char  tcp_offx2;               /* data offset, rsvd */
+    u_short tcp_sport;              
+    u_short tcp_dport;              
+    u_int   tcp_seq;                 
+    u_int   tcp_ack;                  
+    u_char  tcp_offx2;            
 #define TH_OFF(th)      (((th)->tcp_offx2 & 0xf0) >> 4)
     u_char  tcp_flags;
 #define TH_FIN  0x01
@@ -49,9 +49,9 @@ struct tcpheader {
 #define TH_ECE  0x40
 #define TH_CWR  0x80
 #define TH_FLAGS        (TH_FIN|TH_SYN|TH_RST|TH_ACK|TH_URG|TH_ECE|TH_CWR)
-    u_short tcp_win;                 /* window */
-    u_short tcp_sum;                 /* checksum */
-    u_short tcp_urp;                 /* urgent pointer */
+    u_short tcp_win;             
+    u_short tcp_sum;                 
+    u_short tcp_urp;               
 };
 
 // 이더넷 헤더 정보 출력 함수
@@ -103,7 +103,7 @@ void print_packet_data(const unsigned char* data, int size) {
     // 최대 64바이트까지만 출력
     int print_len = size > 64 ? 64 : size;
     
-    // 16바이트씩 출력 (HEX)
+    // 16바이트씩 출력
     for (int i = 0; i < print_len; i++) {
         if (i % 16 == 0) printf("  ");
         printf("%02X ", data[i]);
