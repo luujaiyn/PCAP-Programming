@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
     char errbuf[PCAP_ERRBUF_SIZE];
     pcap_t *handle;
     struct bpf_program fp;
-    char filter_exp[] = "tcp";
+    char filter_exp[] = "tcp port 80";
     bpf_u_int32 net;
     bpf_u_int32 mask;
     
