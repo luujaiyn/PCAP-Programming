@@ -18,5 +18,5 @@ PCAP API를 사용하여 네트워크 패킷을 캡쳐하고 분석하며 libcap
 <실행 환경>
 VMware 내의 우분투 이용
 
-sudo apt update
-sudo apt install libcap-dev
+<sudo apt update>
+<sudo apt install libcap-dev>
