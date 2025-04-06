@@ -14,3 +14,9 @@ PCAP API를 사용하여 네트워크 패킷을 캡쳐하고 분석하며 libcap
   > 패킷 처리 콜백 함수 구현
   > 캡쳐된 패킷에서 헤더 구조체 추출 및 분석
   > 프로그램 실행 흐름 제어
+-----------
+<실행 환경>
+VMware 내의 우분투 이용
+
+sudo apt update
+sudo apt install libcap-dev
