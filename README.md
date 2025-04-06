@@ -37,3 +37,7 @@ nano 를 통해 코드 작성
 
 [Firefox 열고 HTTP 접속하기]
 - firefox http://example.com
+-------------
+<결과>
+![image](https://github.com/user-attachments/assets/e60836e0-13a9-4875-995d-b7b905580c4a)
+
