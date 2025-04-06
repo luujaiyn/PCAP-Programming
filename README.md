@@ -28,4 +28,12 @@ nano 를 통해 코드 작성
 - sudo apt update
 - sudo apt install libpcap-dev gcc
 
-- 
+  -----------
+  [컴파일]
+  - gcc main.c -o sniffer -lpcap
+
+[패킷 캡쳐 실행]
+- sudo ./sniffer
+
+[Firefox 열고 HTTP 접속하기]
+- firefox http://example.com
