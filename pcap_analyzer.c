@@ -70,14 +70,12 @@ int main(int argc, char *argv[]) {
     char filter_exp[] = "tcp port 80";
     bpf_u_int32 net;
     bpf_u_int32 mask;
-    
-    // 사용 가능한 모든 디바이스 목록 가져오기
+
     if (pcap_findalldevs(&alldevs, errbuf) == -1) {
         fprintf(stderr, "디바이스를 찾을 수 없습니다: %s\n", errbuf);
         return 1;
     }
     
-    // 첫 번째 디바이스 선택
     dev = alldevs;
     if (dev == NULL) {
         fprintf(stderr, "사용 가능한 디바이스가 없습니다.\n");
@@ -99,29 +97,26 @@ int main(int argc, char *argv[]) {
         return 2;
     }
     
-    // 이더넷 디바이스인지 확인
     if (pcap_datalink(handle) != DLT_EN10MB) {
         fprintf(stderr, "이더넷 디바이스가 아닙니다\n");
         return 3;
     }
     
-    // 필터 컴파일
     if (pcap_compile(handle, &fp, filter_exp, 0, net) == -1) {
         fprintf(stderr, "필터를 컴파일할 수 없습니다: %s\n", pcap_geterr(handle));
         return 4;
     }
     
-    // 필터 적용
     if (pcap_setfilter(handle, &fp) == -1) {
         fprintf(stderr, "필터를 적용할 수 없습니다: %s\n", pcap_geterr(handle));
         return 5;
     }
     
-    // 패킷 캡처 시작 (무한 루프, Ctrl+C로 종료)
+    // 패킷 캡처 시작
     printf("TCP 패킷 캡처 시작... (종료: Ctrl+C)\n");
     pcap_loop(handle, 0, packet_handler, NULL);
     
-    // 정리
+    
     pcap_freecode(&fp);
     pcap_close(handle);
     pcap_freealldevs(alldevs);
